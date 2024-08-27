@@ -5,9 +5,20 @@ KEY_BG_COLOR = "#D9EDBF"
 KEY_ACTIVE_BG_COLOR = "#90D26D"
 ENTRY_BG = "#F7EFE5"
 FONT_NAME = "Courier"
+FILE_NAME = "data.txt"
+
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+def save():
+    text = f"{web_entry.get()} | {email_username_entry.get()} | {password_entry.get()}\n"
+    with open(file=FILE_NAME, mode="a") as file:
+        file.write(text)
+    web_entry.delete(first=0, last=len(web_entry.get()))
+    email_username_entry.delete(first=0, last=len(email_username_entry.get()))
+    password_entry.delete(first=0, last=len(password_entry.get()))
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -60,7 +71,7 @@ pass_gen_btn = Button(text="Generate Password", bg=KEY_BG_COLOR, activebackgroun
 pass_gen_btn.grid_configure(row=3, column=2, columnspan=1, padx=20)
 
 add_btn = Button(text="Add", bg=KEY_BG_COLOR, activebackground=KEY_ACTIVE_BG_COLOR, width=42, bd=1,
-                 highlightthickness=1)
+                 highlightthickness=1, command=save)
 add_btn.grid_configure(row=4, column=1, columnspan=2)
 
 window.mainloop()
