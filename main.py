@@ -1,3 +1,4 @@
+import string
 from tkinter import *
 from tkinter import messagebox
 
@@ -7,11 +8,37 @@ KEY_ACTIVE_BG_COLOR = "#90D26D"
 ENTRY_BG = "#F7EFE5"
 FONT_NAME = "Courier"
 FILE_NAME = "data.txt"
+LOWER_CASE_LETTERS = list(string.ascii_lowercase)
+UPPER_CASE_LETTERS = list(string.ascii_uppercase)
+SPECIAL_CHARACTERS = "!@#$%^&*()-_+=<>?/|{}[]~"
+NUMBERS = [str(num) for num in range(10)]
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+def validate_password(password):
+    lower_cases = 0
+    upper_cases = 0
+    special_chars = 0
+    numbers = 0
+    for char in password:
+        if char in LOWER_CASE_LETTERS:
+            lower_cases += 1
+        elif char in UPPER_CASE_LETTERS:
+            upper_cases += 1
+        elif char in SPECIAL_CHARACTERS:
+            special_chars += 1
+        elif char in NUMBERS:
+            numbers += 1
+
+    if lower_cases != 0 and upper_cases != 0 and special_chars != 0 and numbers != 0:
+        is_pass_valid = True
+    else:
+        is_pass_valid = False
+    return is_pass_valid
+
+
 def save():
     check_mark = '✔'
     website = web_entry.get()
@@ -19,8 +46,16 @@ def save():
     password = password_entry.get()
 
     text = f"{website} | {email_username} | {password}\n"
+    # Validating
+    is_pass_valid = validate_password(password)
 
-    if len(website) and len(email_username) and len(password) != 0:
+    if len(password) < 8:
+        messagebox.showinfo(title="Password Validation",
+                            message="The length of the password must be at least 8 characters")
+    elif not is_pass_valid:
+        messagebox.showinfo(title="Password Validation",
+                            message="Contains at least one lowercase letter, uppercase letter and special character.")
+    elif len(website) != 0 and len(email_username) != 0:
         is_valid = True
         is_ok = messagebox.askokcancel(title=website, message=f"{' ' * 20}{check_mark}\n\nDetails:\n"
                                                               f"Email: {email_username}\nPassword: {password}")
