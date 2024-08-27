@@ -1,8 +1,8 @@
 from tkinter import *
 
 BACKGROUND = "#F1F8E8"
-KEY_BG_COLOR = "#D8EFD3"
-KEY_ACTIVE_BG_COLOR = "#95D2B3"
+KEY_BG_COLOR = "#D9EDBF"
+KEY_ACTIVE_BG_COLOR = "#90D26D"
 ENTRY_BG = "#F7EFE5"
 FONT_NAME = "Courier"
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -32,23 +32,23 @@ canvas.create_image(100, 100, image=my_pass_img)
 canvas.grid_configure(row=0, column=1, columnspan=2, pady=10, padx=10)
 
 #  Labels
-web_label = Label(text="Website:", font=(FONT_NAME, 10), bg=BACKGROUND, pady=10)
+web_label = Label(text="Website:", font=(FONT_NAME, 12), bg=BACKGROUND, pady=10)
 web_label.grid_configure(row=1, column=0)
 
 email_username_label = Label(text="Email/Username:", font=(FONT_NAME, 10), bg=BACKGROUND, pady=10)
 email_username_label.grid_configure(row=2, column=0)
 
-password_label = Label(text="Password:", font=(FONT_NAME, 10), bg=BACKGROUND, pady=10)
+password_label = Label(text="Password:", font=(FONT_NAME, 12), bg=BACKGROUND, pady=10)
 password_label.grid_configure(row=3, column=0)
 
 # Entries
-web_entry = Entry(width=50)
+web_entry = Entry(width=50, bg=ENTRY_BG)
 web_entry.grid_configure(row=1, column=1, columnspan=2)
 
-email_username_entry = Entry(width=50)
+email_username_entry = Entry(width=50, bg=ENTRY_BG)
 email_username_entry.grid_configure(row=2, column=1, columnspan=2)
 
-password_entry = Entry(width=20)
+password_entry = Entry(width=20, bg=ENTRY_BG)
 password_entry.grid_configure(row=3, column=1, columnspan=1, padx=20)
 
 # Button
