@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 BACKGROUND = "#F1F8E8"
 KEY_BG_COLOR = "#D9EDBF"
@@ -12,12 +13,17 @@ FILE_NAME = "data.txt"
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    text = f"{web_entry.get()} | {email_username_entry.get()} | {password_entry.get()}\n"
-    with open(file=FILE_NAME, mode="a") as file:
-        file.write(text)
-    web_entry.delete(first=0, last=END)
-    email_username_entry.delete(first=0, last=END)
-    password_entry.delete(first=0, last=END)
+    website = web_entry.get()
+    email_username = email_username_entry.get()
+    password = password_entry.get()
+    text = f"{website} | {email_username} | {password}\n"
+    is_ok = messagebox.askokcancel(title=website, message=f"Details:\nEmail: {email_username}\nPassword: {password}")
+    if is_ok:
+        with open(file=FILE_NAME, mode="a") as file:
+            file.write(text)
+        web_entry.delete(first=0, last=END)
+        email_username_entry.delete(first=0, last=END)
+        password_entry.delete(first=0, last=END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
