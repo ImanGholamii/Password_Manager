@@ -18,7 +18,7 @@ window.maxsize(670, 470)
 
 # Grid system
 rows = 5
-columns = 4
+columns = 3
 for row in range(rows):
     window.grid_rowconfigure(index=row, weight=1)
 
@@ -35,7 +35,7 @@ canvas.grid_configure(row=0, column=1, columnspan=2, pady=10, padx=10)
 web_label = Label(text="Website:", font=(FONT_NAME, 12), bg=BACKGROUND, pady=10)
 web_label.grid_configure(row=1, column=0)
 
-email_username_label = Label(text="Email/Username:", font=(FONT_NAME, 10), bg=BACKGROUND, pady=10)
+email_username_label = Label(text="Email/Username:", font=(FONT_NAME, 12), bg=BACKGROUND, pady=10)
 email_username_label.grid_configure(row=2, column=0)
 
 password_label = Label(text="Password:", font=(FONT_NAME, 12), bg=BACKGROUND, pady=10)
