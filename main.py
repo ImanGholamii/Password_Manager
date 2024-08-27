@@ -15,9 +15,9 @@ def save():
     text = f"{web_entry.get()} | {email_username_entry.get()} | {password_entry.get()}\n"
     with open(file=FILE_NAME, mode="a") as file:
         file.write(text)
-    web_entry.delete(first=0, last=len(web_entry.get()))
-    email_username_entry.delete(first=0, last=len(email_username_entry.get()))
-    password_entry.delete(first=0, last=len(password_entry.get()))
+    web_entry.delete(first=0, last=END)
+    email_username_entry.delete(first=0, last=END)
+    password_entry.delete(first=0, last=END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
