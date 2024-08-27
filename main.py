@@ -44,9 +44,12 @@ password_label.grid_configure(row=3, column=0)
 # Entries
 web_entry = Entry(width=50, bg=ENTRY_BG)
 web_entry.grid_configure(row=1, column=1, columnspan=2)
+web_entry.focus()
 
+pre_email = "Example@gmail.com"  # if You use One email always you can set it or Not
 email_username_entry = Entry(width=50, bg=ENTRY_BG)
 email_username_entry.grid_configure(row=2, column=1, columnspan=2)
+email_username_entry.insert(index=0, string=pre_email)
 
 password_entry = Entry(width=20, bg=ENTRY_BG)
 password_entry.grid_configure(row=3, column=1, columnspan=1, padx=20)
