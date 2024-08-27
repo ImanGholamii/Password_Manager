@@ -13,17 +13,25 @@ FILE_NAME = "data.txt"
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
+    check_mark = '✔'
     website = web_entry.get()
     email_username = email_username_entry.get()
     password = password_entry.get()
+
     text = f"{website} | {email_username} | {password}\n"
-    is_ok = messagebox.askokcancel(title=website, message=f"Details:\nEmail: {email_username}\nPassword: {password}")
-    if is_ok:
-        with open(file=FILE_NAME, mode="a") as file:
-            file.write(text)
-        web_entry.delete(first=0, last=END)
-        email_username_entry.delete(first=0, last=END)
-        password_entry.delete(first=0, last=END)
+
+    if len(website) and len(email_username) and len(password) != 0:
+        is_valid = True
+        is_ok = messagebox.askokcancel(title=website, message=f"{' ' * 20}{check_mark}\n\nDetails:\n"
+                                                              f"Email: {email_username}\nPassword: {password}")
+        if is_ok and is_valid:
+            with open(file=FILE_NAME, mode="a") as file:
+                file.write(text)
+            web_entry.delete(first=0, last=END)
+            email_username_entry.delete(first=0, last=END)
+            password_entry.delete(first=0, last=END)
+    else:
+        messagebox.showinfo(title="Error", message="Some of fields are empty!")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
