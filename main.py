@@ -1,8 +1,8 @@
 from tkinter import *
 
 BACKGROUND = "#F1F8E8"
-GEN_KEY_FG_COLOR = "#D8EFD3"
-GEN_KEY_BG_COLOR = "#95D2B3"
+KEY_BG_COLOR = "#D8EFD3"
+KEY_ACTIVE_BG_COLOR = "#95D2B3"
 ENTRY_BG = "#F7EFE5"
 FONT_NAME = "Courier"
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -12,11 +12,13 @@ FONT_NAME = "Courier"
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
-window.config(padx=100, pady=50, bg=BACKGROUND)
+window.config(padx=50, pady=50, bg=BACKGROUND)
+window.minsize(670, 470)
+window.maxsize(670, 470)
 
 # Grid system
 rows = 5
-columns = 3
+columns = 4
 for row in range(rows):
     window.grid_rowconfigure(index=row, weight=1)
 
@@ -27,7 +29,7 @@ for col in range(columns):
 canvas = Canvas(width=200, height=200, background=BACKGROUND, highlightthickness=0)
 my_pass_img = PhotoImage(file="logo.png")
 canvas.create_image(100, 100, image=my_pass_img)
-canvas.grid_configure(row=0, column=1, pady=10, padx=10)
+canvas.grid_configure(row=0, column=1, columnspan=2, pady=10, padx=10)
 
 #  Labels
 web_label = Label(text="Website:", font=(FONT_NAME, 10), bg=BACKGROUND, pady=10)
@@ -38,5 +40,24 @@ email_username_label.grid_configure(row=2, column=0)
 
 password_label = Label(text="Password:", font=(FONT_NAME, 10), bg=BACKGROUND, pady=10)
 password_label.grid_configure(row=3, column=0)
+
+# Entries
+web_entry = Entry(width=50)
+web_entry.grid_configure(row=1, column=1, columnspan=2)
+
+email_username_entry = Entry(width=50)
+email_username_entry.grid_configure(row=2, column=1, columnspan=2)
+
+password_entry = Entry(width=20)
+password_entry.grid_configure(row=3, column=1, columnspan=1, padx=20)
+
+# Button
+pass_gen_btn = Button(text="Generate Password", bg=KEY_BG_COLOR, activebackground=KEY_ACTIVE_BG_COLOR, bd=0,
+                      highlightthickness=0)
+pass_gen_btn.grid_configure(row=3, column=2, columnspan=1, padx=20)
+
+add_btn = Button(text="Add", bg=KEY_BG_COLOR, activebackground=KEY_ACTIVE_BG_COLOR, width=42, bd=1,
+                 highlightthickness=1)
+add_btn.grid_configure(row=4, column=1, columnspan=2)
 
 window.mainloop()
