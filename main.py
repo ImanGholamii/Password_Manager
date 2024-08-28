@@ -75,6 +75,7 @@ def save():
             web_entry.delete(first=0, last=END)
             email_username_entry.delete(first=0, last=END)
             password_entry.delete(first=0, last=END)
+            messagebox.showinfo(title="Password Manager", message="Saved Successfully.")
     else:
         messagebox.showinfo(title="Error", message="Some of fields are empty!")
 
