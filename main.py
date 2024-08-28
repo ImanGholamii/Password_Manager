@@ -17,13 +17,16 @@ NUMBERS = [str(num) for num in range(10)]
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def password_generator():
+    """Generate Random Passwords"""
     all_chars = LOWER_CASE_LETTERS + UPPER_CASE_LETTERS + SPECIAL_CHARACTERS + NUMBERS
     random_password = ''.join(choice(all_chars) for _ in range(randint(8, 16)))
-    return random_password
+    password_entry.delete(0, END)
+    password_entry.insert(index=0, string=random_password)
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def validate_password(password):
+    """Check Validity of Password"""
     lower_cases = 0
     upper_cases = 0
     special_chars = 0
@@ -46,6 +49,7 @@ def validate_password(password):
 
 
 def save():
+    """Save validated data in txt file"""
     check_mark = '✔'
     website = web_entry.get()
     email_username = email_username_entry.get()
@@ -122,7 +126,7 @@ password_entry.grid_configure(row=3, column=1, columnspan=1, padx=20)
 
 # Button
 pass_gen_btn = Button(text="Generate Password", bg=KEY_BG_COLOR, activebackground=KEY_ACTIVE_BG_COLOR, bd=0,
-                      highlightthickness=0)
+                      highlightthickness=0, command=password_generator)
 pass_gen_btn.grid_configure(row=3, column=2, columnspan=1, padx=20)
 
 add_btn = Button(text="Add", bg=KEY_BG_COLOR, activebackground=KEY_ACTIVE_BG_COLOR, width=42, bd=1,
