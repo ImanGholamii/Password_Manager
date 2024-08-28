@@ -99,7 +99,7 @@ for col in range(columns):
 
 # Photo
 canvas = Canvas(width=200, height=200, background=BACKGROUND, highlightthickness=0)
-my_pass_img = PhotoImage(file="logo.png")
+my_pass_img = PhotoImage(file="images/logo.png")
 canvas.create_image(100, 100, image=my_pass_img)
 canvas.grid_configure(row=0, column=1, columnspan=2, pady=10, padx=10)
 
