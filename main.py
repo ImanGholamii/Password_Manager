@@ -1,4 +1,5 @@
 import string
+import webbrowser
 from random import randint, choice
 from tkinter import *
 from tkinter import messagebox
@@ -88,7 +89,7 @@ window.minsize(670, 470)
 window.maxsize(670, 470)
 
 # Grid system
-rows = 5
+rows = 7
 columns = 3
 for row in range(rows):
     window.grid_rowconfigure(index=row, weight=1)
@@ -130,8 +131,35 @@ pass_gen_btn = Button(text="Generate Password", bg=KEY_BG_COLOR, activebackgroun
                       highlightthickness=0, command=password_generator)
 pass_gen_btn.grid_configure(row=3, column=2, columnspan=1, padx=20)
 
-add_btn = Button(text="Add", bg=KEY_BG_COLOR, activebackground=KEY_ACTIVE_BG_COLOR, width=42, bd=1,
-                 highlightthickness=1, command=save)
+add_btn = Button(text="Add", bg=KEY_BG_COLOR, activebackground=KEY_ACTIVE_BG_COLOR, width=43, bd=1,
+                 highlightthickness=1, command=save, pady=7)
 add_btn.grid_configure(row=4, column=1, columnspan=2)
+
+# Copyright Label
+copyright_label = Label(
+    text="© 2024 Iman Gholami - All Rights Reserved",
+    font=(FONT_NAME, 10),
+    bg=BACKGROUND,
+    pady=15
+)
+copyright_label.grid(row=5, column=0, columnspan=3)
+
+
+# Email Link
+def open_email():
+    """function to open the email client"""
+    webbrowser.open("mailto:imangholamiimi@gmail.com")
+
+
+email_link = Label(
+    text="Contact/Support",
+    font=(FONT_NAME, 10, 'underline'),
+    bg=BACKGROUND,
+    fg="blue",
+    cursor="hand2",
+    pady=3
+)
+email_link.grid(row=6, column=0, columnspan=3)
+email_link.bind("<Button-1>", lambda e: open_email())
 
 window.mainloop()
