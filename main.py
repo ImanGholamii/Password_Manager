@@ -3,6 +3,7 @@ import webbrowser
 from random import randint, choice, shuffle
 from tkinter import *
 from tkinter import messagebox
+from pyperclip import copy
 
 BACKGROUND = "#F1F8E8"
 KEY_BG_COLOR = "#D9EDBF"
@@ -33,6 +34,8 @@ def password_generator():
     random_password = ''.join(random_password)
     password_entry.delete(0, END)
     password_entry.insert(index=0, string=random_password)
+    copy(random_password)  # copy on clipboard
+    messagebox.showinfo(title="Password Manager", message="📋 The Password has been Saved in Clipboard.")
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
