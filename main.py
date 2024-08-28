@@ -1,4 +1,5 @@
 import string
+from random import randint, choice
 from tkinter import *
 from tkinter import messagebox
 
@@ -10,11 +11,16 @@ FONT_NAME = "Courier"
 FILE_NAME = "data.txt"
 LOWER_CASE_LETTERS = list(string.ascii_lowercase)
 UPPER_CASE_LETTERS = list(string.ascii_uppercase)
-SPECIAL_CHARACTERS = "!@#$%^&*()-_+=<>?/|{}[]~"
+SPECIAL_CHARACTERS = [char for char in "!@#$%^&*()-_+=<>?/|{}[]~"]
 NUMBERS = [str(num) for num in range(10)]
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+def password_generator():
+    all_chars = LOWER_CASE_LETTERS + UPPER_CASE_LETTERS + SPECIAL_CHARACTERS + NUMBERS
+    random_password = ''.join(choice(all_chars) for _ in range(randint(8, 16)))
+    return random_password
+
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def validate_password(password):
