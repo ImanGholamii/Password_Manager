@@ -1,6 +1,6 @@
 import string
 import webbrowser
-from random import randint, choice
+from random import randint, choice, shuffle
 from tkinter import *
 from tkinter import messagebox
 
@@ -19,8 +19,18 @@ NUMBERS = [str(num) for num in range(10)]
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def password_generator():
     """Generate Random Passwords"""
-    all_chars = LOWER_CASE_LETTERS + UPPER_CASE_LETTERS + SPECIAL_CHARACTERS + NUMBERS
-    random_password = ''.join(choice(all_chars) for _ in range(randint(8, 16)))
+    random_password = []
+    shuffle(LOWER_CASE_LETTERS)
+    shuffle(UPPER_CASE_LETTERS)
+    shuffle(SPECIAL_CHARACTERS)
+    shuffle(NUMBERS)
+    ran_lows = ''.join(choice(LOWER_CASE_LETTERS) for _ in range(randint(4, 5)))
+    ran_ups = ''.join(choice(UPPER_CASE_LETTERS) for _ in range(randint(4, 5)))
+    ran_specs = ''.join(choice(SPECIAL_CHARACTERS) for _ in range(randint(2, 4)))
+    ran_nums = ''.join(choice(NUMBERS) for _ in range(randint(2, 4)))
+    random_password += ran_nums + ran_specs + ran_ups + ran_lows  # appending
+    shuffle(random_password)
+    random_password = ''.join(random_password)
     password_entry.delete(0, END)
     password_entry.insert(index=0, string=random_password)
 
@@ -65,7 +75,8 @@ def save():
                             message="The length of the password must be at least 8 characters")
     elif not is_pass_valid:
         messagebox.showinfo(title="Password Validation",
-                            message="Contains at least one lowercase letter, uppercase letter and special character.")
+                            message="Paasword Must Contains at least one lowercase letter,"
+                                    " uppercase letter, Number and special character.")
     elif len(website) != 0 and len(email_username) != 0:
         is_valid = True
         is_ok = messagebox.askokcancel(title=website, message=f"{' ' * 20}{check_mark}\n\nDetails:\n"
