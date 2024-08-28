@@ -10,6 +10,7 @@ you to generate, validate, and **securely** store ***locally*** passwords for di
 
 - **Password Generator**: Generates random, secure passwords with a mix of letters, numbers, and special characters.
 - **Password Validation**: Ensures passwords meet minimum security criteria.
+- **Clipboard**: Generated password saves in clipboard to paste easily everywhere.
 - **Data Storage**: Saves website, email/username, and password details in a text file for easy retrieval.
 - **User-Friendly Interface**: Simple and intuitive GUI built with Tkinter.
 
@@ -19,6 +20,7 @@ you to generate, validate, and **securely** store ***locally*** passwords for di
 
 - [Python 3.x](https://www.python.org/downloads/)
 - Tkinter module (usually included with standard Python installations)
+- [Pyperclip 1.9.0](https://pypi.org/project/pyperclip/)
 
 ### Installation
 
@@ -26,7 +28,11 @@ you to generate, validate, and **securely** store ***locally*** passwords for di
    ```sh
    git clone https://github.com/ImanGholamii/Password_Manager.git
    cd Password_Manager
-2. Run the Application:
+2. Make sure you have the required dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+3. Run the Application:
    ```sh
    python main.py
    ```
