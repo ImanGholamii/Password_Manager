@@ -1,8 +1,10 @@
+import json
 import string
 import webbrowser
 from random import randint, choice, shuffle
 from tkinter import *
 from tkinter import messagebox
+
 from pyperclip import copy
 
 BACKGROUND = "#F1F8E8"
@@ -10,7 +12,7 @@ KEY_BG_COLOR = "#D9EDBF"
 KEY_ACTIVE_BG_COLOR = "#90D26D"
 ENTRY_BG = "#F7EFE5"
 FONT_NAME = "Courier"
-FILE_NAME = "data.txt"
+FILE_NAME = "data.json"
 LOWER_CASE_LETTERS = list(string.ascii_lowercase)
 UPPER_CASE_LETTERS = list(string.ascii_uppercase)
 SPECIAL_CHARACTERS = [char for char in "!@#$%^&*()-_+=<>?/|{}[]~"]
@@ -69,7 +71,12 @@ def save():
     email_username = email_username_entry.get()
     password = password_entry.get()
 
-    text = f"{website} | {email_username} | {password}\n"
+    data_dict = {
+        website: {
+            "email": email_username,
+            "password": password,
+        }
+    }
     # Validating
     is_pass_valid = validate_password(password)
 
@@ -86,7 +93,7 @@ def save():
                                                               f"Email: {email_username}\nPassword: {password}")
         if is_ok and is_valid:
             with open(file=FILE_NAME, mode="a") as file:
-                file.write(text)
+                json.dump(data_dict, file, indent=4)
             web_entry.delete(first=0, last=END)
             email_username_entry.delete(first=0, last=END)
             password_entry.delete(first=0, last=END)
