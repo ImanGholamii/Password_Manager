@@ -20,6 +20,7 @@ you to generate, validate, and **securely** store ***locally*** passwords for di
 
 - [Python 3.x](https://www.python.org/downloads/)
 - Tkinter module (usually included with standard Python installations)
+- Json module (usually included with standard Python installations)
 - [Pyperclip 1.9.0](https://pypi.org/project/pyperclip/)
 
 ### Installation
@@ -53,9 +54,10 @@ passwords and saving data.
 - 🔍 Search Functionality: Implement a search feature to quickly find saved passwords.
 - 📊 Password Strength Indicator: Show a visual indicator of password strength.
 
-## 📜 License
+## 📜 License 
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the Apache v2.0 2004 License ⚖️.
+See the [LICENSE](https://github.com/ImanGholamii/Password_Manager/blob/main/LICENSE) file for details.
 
 ## 🙌 Acknowledgements
 
