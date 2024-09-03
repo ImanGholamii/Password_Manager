@@ -15,7 +15,7 @@ FONT_NAME = "Courier"
 FILE_NAME = "data.json"
 LOWER_CASE_LETTERS = list(string.ascii_lowercase)
 UPPER_CASE_LETTERS = list(string.ascii_uppercase)
-SPECIAL_CHARACTERS = [char for char in "!@#$%^&*()-_+=<>?/|{}[]~"]
+SPECIAL_CHARACTERS = [char for char in "!@#$%^&*()-_+=<>?/|{}[].~"]
 NUMBERS = [str(num) for num in range(10)]
 
 
@@ -92,8 +92,8 @@ def save():
         is_ok = messagebox.askokcancel(title=website, message=f"{' ' * 20}{check_mark}\n\nDetails:\n"
                                                               f"Email: {email_username}\nPassword: {password}")
         if is_ok and is_valid:
-            with open(file=FILE_NAME, mode="w") as file:
-                json.dump(data_dict, file, indent=4)
+            with open(file=FILE_NAME, mode="w") as output_file:
+                json.dump(data_dict, output_file, indent=4)
             web_entry.delete(first=0, last=END)
             email_username_entry.delete(first=0, last=END)
             password_entry.delete(first=0, last=END)
