@@ -92,8 +92,11 @@ def save():
         is_ok = messagebox.askokcancel(title=website, message=f"{' ' * 20}{check_mark}\n\nDetails:\n"
                                                               f"Email: {email_username}\nPassword: {password}")
         if is_ok and is_valid:
+            with open(file=FILE_NAME, mode="r") as data_file:
+                data = json.load(data_file)
+                data.update(data_dict)
             with open(file=FILE_NAME, mode="w") as output_file:
-                json.dump(data_dict, output_file, indent=4)
+                json.dump(data, output_file, indent=4)
             web_entry.delete(first=0, last=END)
             email_username_entry.delete(first=0, last=END)
             password_entry.delete(first=0, last=END)
