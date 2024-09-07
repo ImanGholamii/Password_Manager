@@ -110,6 +110,26 @@ def save():
         messagebox.showinfo(title="Error", message="Some of fields are empty!")
 
 
+# ---------------------------- SEARCH ------------------------------- #
+def search_website():
+    user_input = web_entry.get()
+    try:
+        with open(FILE_NAME, "r") as data:
+            data_file = json.load(data)
+    except FileNotFoundError:
+        messagebox.showerror(title='Searching...', message=f"there is no saved password yet!")
+    else:
+        if user_input in data_file:
+            email = data_file[user_input]['email']
+            password = data_file[user_input]['password']
+            messagebox.showinfo(title=f"{user_input}", message=f"Email: {email}\n"
+                                                               f"Password: {password}")
+            copy(data_file[user_input]['password'])
+            messagebox.showinfo(title="Password Manager", message="📋 The Password has been Saved in Clipboard.")
+        else:
+            messagebox.showerror(title='Searching...', message=f"No details for  {user_input}!")
+
+
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
@@ -143,8 +163,8 @@ password_label = Label(text="Password:", font=(FONT_NAME, 12), bg=BACKGROUND, pa
 password_label.grid_configure(row=3, column=0)
 
 # Entries
-web_entry = Entry(width=50, bg=ENTRY_BG)
-web_entry.grid_configure(row=1, column=1, columnspan=2)
+web_entry = Entry(width=20, bg=ENTRY_BG)
+web_entry.grid_configure(row=1, column=1, columnspan=1)
 web_entry.focus()
 
 pre_email = "Example@gmail.com"  # if You use One email always you can set it or Not
@@ -163,6 +183,10 @@ pass_gen_btn.grid_configure(row=3, column=2, columnspan=1, padx=20)
 add_btn = Button(text="Add", bg=KEY_BG_COLOR, activebackground=KEY_ACTIVE_BG_COLOR, width=43, bd=1,
                  highlightthickness=1, command=save, pady=7)
 add_btn.grid_configure(row=4, column=1, columnspan=2)
+
+search_btn = Button(text="Search", command=search_website, bg=KEY_BG_COLOR, activebackground=KEY_ACTIVE_BG_COLOR, bd=0,
+                    width=14)
+search_btn.grid_configure(row=1, column=2)
 
 # Copyright Label
 copyright_label = Label(
