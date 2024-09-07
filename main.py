@@ -2,6 +2,7 @@ import json
 import string
 import webbrowser
 from random import randint, choice, shuffle
+from re import match
 from tkinter import *
 from tkinter import messagebox
 
@@ -17,6 +18,7 @@ LOWER_CASE_LETTERS = list(string.ascii_lowercase)
 UPPER_CASE_LETTERS = list(string.ascii_uppercase)
 SPECIAL_CHARACTERS = [char for char in "!@#$%^&*()-_+=<>?/|{}[].~"]
 NUMBERS = [str(num) for num in range(10)]
+EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -87,7 +89,7 @@ def save():
         messagebox.showinfo(title="Password Validation",
                             message="Paasword Must Contains at least one lowercase letter,"
                                     " uppercase letter, Number and special character.")
-    elif len(website) != 0 and len(email_username) != 0:
+    elif len(website) != 0 and email_validation(email=email_username):
         is_valid = True
         is_ok = messagebox.askokcancel(title=website, message=f"{' ' * 20}{check_mark}\n\nDetails:\n"
                                                               f"Email: {email_username}\nPassword: {password}")
@@ -107,7 +109,10 @@ def save():
             password_entry.delete(first=0, last=END)
             messagebox.showinfo(title="Password Manager", message="Saved Successfully.")
     else:
-        messagebox.showinfo(title="Error", message="Some of fields are empty!")
+        if not email_validation(email_username):
+            messagebox.showerror(title="Error", message="Email format isn't Valid.")
+        else:
+            messagebox.showerror(title="Error", message="Website field is empty!")
 
 
 # ---------------------------- SEARCH ------------------------------- #
@@ -128,6 +133,14 @@ def search_website():
             messagebox.showinfo(title="Password Manager", message="📋 The Password has been Saved in Clipboard.")
         else:
             messagebox.showerror(title='Searching...', message=f"No details for  {user_input}!")
+
+
+# ---------------------------- EMAIL VALIDATION ------------------------------- #
+def email_validation(email):
+    if match(EMAIL_REGEX, email):
+        return True
+    else:
+        return False
 
 
 # ---------------------------- UI SETUP ------------------------------- #
