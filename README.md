@@ -2,6 +2,11 @@
 
 Welcome to the Password Manager! This project is a simple yet powerful tool built using Python and Tkinter. It allows
 you to generate, validate, and **securely** store ***locally*** passwords for different websites and accounts.
+<p>v1.1.0:</p>
+<p align="center">
+<img src="https://raw.githubusercontent.com/ImanGholamii/Password_Manager/9eca63a34878edcd8e42c4e8e1db4031b682e4c9/images/password_manager_v1.1.0.JPG" alt="Password Manager" width="500" height="400">
+</p>
+<p>v1.1.0:</p>
 <p align="center">
 <img src="https://github.com/ImanGholamii/Password_Manager/blob/main/images/password_manager.JPG?raw=true" alt="Password Manager" width="500" height="400">
 </p>
